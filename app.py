@@ -197,37 +197,28 @@ if 'ultimo_calculo' in st.session_state:
     if dados['mao_de_obra'] > 0:
         linha_acabamento = f"<p style='margin: 8px 0;'><b>ACABAMENTO/PINTURA:</b> <span style='float: right;'>Incluído</span></p>"
 
-    # HTML Melhorado do Recibo
-    recibo_html = f"""
-    <div style="background-color: {bg_color}; padding: 30px 25px; border-radius: 12px; border: 3px solid {border_color}; box-shadow: 0 10px 25px {box_shadow}; color: {text_color}; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 400px; margin: 10px auto;">
-        
-        <!-- Cabeçalho Alinhado -->
-        <div style="text-align: center; border-bottom: 2px solid {divider_color}; padding-bottom: 15px; margin-bottom: 20px;">
-            <h1 style="color: #e30613; margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 1px;">PRESS START 3D</h1>
-            <p style="font-size: 11px; color: {sub_color}; margin: 2px 0 12px 0; letter-spacing: 2px; text-transform: uppercase;">Serviços de Impressão 3D</p>
-            <div style="background-color: {highlight_bg}; padding: 8px; border-radius: 6px; display: inline-block;">
-                <p style="margin: 0; font-size: 13px; font-weight: bold; color: {text_color};">📱 (19) 97199-9114 &nbsp;|&nbsp; 📸 @pressstart_3d</p>
-            </div>
-        </div>
-        
-        <!-- Corpo de Dados -->
-        <div style="font-size: 15px; line-height: 1.6;">
-            <p style="margin: 8px 0;"><b>ORÇAMENTO Nº:</b> <span style="float: right; color: {sub_color};">{dados['id']}</span></p>
-            <p style="margin: 8px 0;"><b>PROJETO:</b> <span style="float: right; font-weight: bold;">{dados['nome'].upper()}</span></p>
-            <p style="margin: 8px 0;"><b>MATERIAL:</b> <span style="float: right; font-size: 14px;">{dados['filamento_resumo']}</span></p>
-            <p style="margin: 8px 0;"><b>TEMPO EST.:</b> <span style="float: right;">{dados['horas']} horas</span></p>
-            {linha_acabamento}
-        </div>
-        
-        <!-- Rodapé / Preço -->
-        <div style="margin-top: 20px; border-top: 2px dashed {divider_color}; padding-top: 20px; text-align: center;">
-            <p style="margin: 0; font-size: 14px; font-weight: bold; color: {sub_color}; text-transform: uppercase;">Total a Pagar</p>
-            <h1 style="color: #e30613; margin: 5px 0 10px 0; font-size: 38px;">R$ {dados['venda']:.2f}</h1>
-            <p style="font-size: 11px; color: {sub_color}; margin: 0;">Orçamento válido por 7 dias.<br>Data: {datetime.now().strftime("%d/%m/%Y")}</p>
-        </div>
-        
-    </div>
-    """
+    # HTML Melhorado do Recibo (SEM INDENTAÇÃO para não virar código no Streamlit)
+    recibo_html = f"""<div style="background-color: {bg_color}; padding: 30px 25px; border-radius: 12px; border: 3px solid {border_color}; box-shadow: 0 10px 25px {box_shadow}; color: {text_color}; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 400px; margin: 10px auto;">
+<div style="text-align: center; border-bottom: 2px solid {divider_color}; padding-bottom: 15px; margin-bottom: 20px;">
+<h1 style="color: #e30613; margin: 0; font-size: 28px; font-weight: 900; letter-spacing: 1px;">PRESS START 3D</h1>
+<p style="font-size: 11px; color: {sub_color}; margin: 2px 0 12px 0; letter-spacing: 2px; text-transform: uppercase;">Serviços de Impressão 3D</p>
+<div style="background-color: {highlight_bg}; padding: 8px; border-radius: 6px; display: inline-block;">
+<p style="margin: 0; font-size: 13px; font-weight: bold; color: {text_color};">📱 (19) 97199-9114 &nbsp;|&nbsp; 📸 @pressstart_3d</p>
+</div>
+</div>
+<div style="font-size: 15px; line-height: 1.6;">
+<p style="margin: 8px 0;"><b>ORÇAMENTO Nº:</b> <span style="float: right; color: {sub_color};">{dados['id']}</span></p>
+<p style="margin: 8px 0;"><b>PROJETO:</b> <span style="float: right; font-weight: bold;">{dados['nome'].upper()}</span></p>
+<p style="margin: 8px 0;"><b>MATERIAL:</b> <span style="float: right; font-size: 14px;">{dados['filamento_resumo']}</span></p>
+<p style="margin: 8px 0;"><b>TEMPO EST.:</b> <span style="float: right;">{dados['horas']} horas</span></p>
+{linha_acabamento}
+</div>
+<div style="margin-top: 20px; border-top: 2px dashed {divider_color}; padding-top: 20px; text-align: center;">
+<p style="margin: 0; font-size: 14px; font-weight: bold; color: {sub_color}; text-transform: uppercase;">Total a Pagar</p>
+<h1 style="color: #e30613; margin: 5px 0 10px 0; font-size: 38px;">R$ {dados['venda']:.2f}</h1>
+<p style="font-size: 11px; color: {sub_color}; margin: 0;">Orçamento válido por 7 dias.<br>Data: {datetime.now().strftime("%d/%m/%Y")}</p>
+</div>
+</div>"""
     
     st.markdown(recibo_html, unsafe_allow_html=True)
     st.caption("📸 O recibo atualizado está pronto. Você pode alterar a cor e tirar o print.")
