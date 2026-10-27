@@ -139,41 +139,4 @@ with aba_calculadora:
             preco_venda_final = custo_producao_base + valor_lucro + mao_de_obra
 
             # ID do Orçamento baseado no momento exato
-            id_orcamento = datetime.now().strftime("%Y%m%d%H%M")
-            
-            # String de resumo para o recibo/histórico
-            resumo_filamentos = f"{tipo_filamento1}"
-            if usar_filamento2:
-                resumo_filamentos += f" + {tipo_filamento2}"
-
-            dados_atuais = {
-                "id": id_orcamento,
-                "nome": nome_projeto, 
-                "filamento_resumo": resumo_filamentos, 
-                "horas": horas_impressao,
-                "custo": custo_producao_base, 
-                "lucro": valor_lucro, 
-                "mao_de_obra": mao_de_obra,
-                "venda": preco_venda_final
-            }
-            
-            salvar_historico(dados_atuais)
-            st.session_state.ultimo_calculo = dados_atuais
-            
-            st.success(f"Cálculo salvo! Orçamento Nº: {id_orcamento}")
-            st.info(f"**Custo:** R$ {custo_producao_base:.2f} | **Lucro:** R$ {valor_lucro:.2f} | **Acabamento:** R$ {mao_de_obra:.2f} | **Venda Final:** R$ {preco_venda_final:.2f}")
-        else:
-            st.error("Insira o peso de pelo menos uma peça para calcular.")
-
-with aba_cliente:
-    if 'ultimo_calculo' in st.session_state:
-        dados = st.session_state.ultimo_calculo
-        
-        linha_acabamento = ""
-        if dados['mao_de_obra'] > 0:
-            linha_acabamento = f"<p><b>ACABAMENTO/PINTURA:</b> <span style='float: right;'>Incluído</span></p>"
-
-        # HTML + CSS para emular o recibo formatado na tela
-        recibo_html = f"""
-        <div style="background-color: white; padding: 20px; border-radius: 10px; border: 1px solid #ddd; color: black; font-family: sans-serif;">
-            <h2 style="text-align: center; color: #e30613;
+            id_orcamento = datetime.now().strftime
